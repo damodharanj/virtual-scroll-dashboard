@@ -1,0 +1,12 @@
+
+.header {
+    position: sticky;
+    top: 0px;
+    background-color: white;
+}
+
+.example-viewport {
+    height: calc(100vh - 50px);
+    width: 100%;
+    border: 1px solid black;
+  }

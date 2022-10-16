@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 * {
-    font-family: sans-serif;
+    font-family: 'Inter';
+    font-size: 12px;
 }
 
 .flex {
@@ -16,7 +17,7 @@
     justify-content: left;
 }
 
-.margin-5 {
+.padding-5 {
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -24,6 +25,11 @@
 .margin-10 {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.margin-5 {
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 
@@ -34,4 +40,28 @@
 
 .wrap {
     flex-flow: wrap;
+    justify-content: center;
+}
+
+.theme-blue {
+    color: #479eff;
+}
+
+.hash {
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+html, body { height: 100%; }
+
+.head-text {
+    color: #858585;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
 }

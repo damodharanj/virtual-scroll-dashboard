@@ -1,37 +1,40 @@
-<div style="max-width: 1100px; margin: auto">
-  <div>Mostly tap</div>
-  <div>Check your voice mail</div>
-  <div class="flex space-between">
-    <div class="flex">
+<div style="max-width: 1240px; margin: auto" class="">
+  <div class="header">
+    <div class="margin-10">Mostly tap</div>
+    <h1 style="font-size: 30px;">Check your voice mail</h1>
+    <div class="flex space-between">
       <div class="flex">
-        <span>Sort By</span>
-        <select name="" id="">
-          <option value="">Ascending</option>
-          <option value="">Descending</option>
-        </select>
+        <div class="flex margin-10">
+          <span class="hash margin-5">Sort By</span>
+          <span class="hash theme-blue">Date</span>
+        </div>
+        <div class="flex">
+          <span class="hash margin-5">Users</span>
+          <span class="hash theme-blue">All</span>
+        </div>
       </div>
-      <div class="flex">
-        <span>Users</span>
-        <select name="" id="">
-          <option value="">Ascending</option>
-          <option value="">Descending</option>
-        </select>
-      </div>
-    </div>
-    <div>
-      <div class="flex">
-        <span>More filters</span>
-        <select name="" id="">
-          <option value="">Ascending</option>
-          <option value="">Descending</option>
-        </select>
+      <div>
+        <div class="flex">
+          <span>More filters</span>
+          <select name="" id="">
+            <option value="">Ascending</option>
+            <option value="">Descending</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
   <div class="flex wrap">
-    <app-card></app-card>
-    <app-card></app-card>
-    <app-card></app-card><app-card></app-card><app-card></app-card>
+    <!-- <cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
+      <app-card *cdkVirtualFor="let i of items; let ind = index" [name]="ind"></app-card>
+    </cdk-virtual-scroll-viewport> -->
+    <li-virtual-scroll style="height: calc(100vh - 200px); width: 100vw; margin: 30px" [gridList]="true"  [items]="items" [asyncRendering]="true" [viewCache]="25">
+      <app-card style="display: inline-flex;" *liVirtualItem="let item" [item]="item"></app-card>
+      <!-- <div *liVirtualItem="let item">
+          {{ item }}
+      </div> -->
+    </li-virtual-scroll>
+    
   </div>
   
 </div>
