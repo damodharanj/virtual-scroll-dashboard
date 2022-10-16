@@ -1,0 +1,25 @@
+
+.root {
+    max-width: 550px;
+}
+
+.circular {
+    border-radius: 50%;
+    width: 40px;
+}
+
+.hash {
+    cursor: pointer;
+    color: #479eff;
+    font-weight: bold;
+}
+
+.rounded-edges {
+    border-radius: 5px;
+}
+
+
+
+.border {
+    border: 1px solid #f3f3f8;
+}

@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+    font-family: sans-serif;
+}
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.align-left {
+    justify-content: left;
+}
+
+.margin-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.margin-10 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+
+.padding {
+    padding: 10px;
+}
+
+.wrap {
+    flex-flow: wrap;
+}
