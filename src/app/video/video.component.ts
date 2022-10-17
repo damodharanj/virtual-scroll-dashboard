@@ -6,10 +6,12 @@ import videojs from 'video.js';
   templateUrl: './video.component.html',
   styleUrls: ['./video.component.css']
 })
-export class VideoComponent implements AfterViewInit, OnDestroy {
+export class VideoComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('target', {static: true}) target: ElementRef | null = null;
   player: object | null = null;
+
+  @Input() videourl = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm'
 
   @Input() options: {
     fluid: boolean,
@@ -23,17 +25,21 @@ export class VideoComponent implements AfterViewInit, OnDestroy {
     aspectRatio: '30:10',
     autoplay: true,
     sources: [{
-      src: 'https://www.w3schools.com/tags/movie.mp4',
+      src: this.videourl,
     }]
   };
 
 
-  constructor() { }
+  constructor() {}
+
+  ngOnInit() {
+    this.options.sources[0].src = this.videourl;
+  }
 
   ngAfterViewInit(): void {
     if (this.target) {
       this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
-        console.log('onPlayerReady', this);
+        // player rendered
       });
     }
   }

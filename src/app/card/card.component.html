@@ -1,5 +1,5 @@
 
-<div class="root space-between border rounded-edges">
+<div [ngStyle]="{'width': dialogMode ? '700px' : '560px', 'font-size': dialogMode ? '15px': 'inherit'}" class="root space-between border rounded-edges">
     <div>
         <div class="flex space-between padding" style="background-color: #f5f5f5;">
             <div class="hash">{{item.name}}</div>
@@ -14,51 +14,76 @@
         <div class="overlay">
             <mat-icon (click)="playVideo = !playVideo" *ngIf="!playVideo" class="play-button" fontIcon="play_circle"></mat-icon>
             <img (click)="playVideo = !playVideo" *ngIf="!playVideo" class="thumbnail" style="width: 100%; height: 200px" src="https://s3-alpha-sig.figma.com/img/c6cc/39e3/ca749f5d7e1b1d2c40e7fabfde97f538?Expires=1666569600&Signature=RYMENv6jOiPxFGwTiYkRwDeAUrjZuzn4dAomauCIqPJRdVJUwH2XPPHXzs2H4HXXUxEOl4MP~TfJ~t2K7zZvtmVYcruQq~GP7QDk-KEI5Jeu0Xj25HAWIeKxCsFTqpjO8p0aK3X-ZqIDv7fNdMBv19TJueWQty4D1tt6Ake4zFygU5-C~~qCWNrZu11WJotyzV5G4LRgjMo4sSEuPqsO0hpaIFH~O4N0qbYbkRvlpG~s2hC~bEsYjtkgV-xiq0Xi4h6jCUsLIMvSzroEfXo~sLS9WNTGrzxtJwHw55KIwMAr1DrOUzSZwArm1-R6ATmutVK5vLk3ivLZZt9DANb~rg__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" alt="">
-            <app-video *ngIf="playVideo"></app-video>
+            <app-video [videourl]="item.videoURL" *ngIf="playVideo"></app-video>
         </div>
-        
-        <div (click)="showDialog()" class="flex space-between padding">
-            <div class="hash theme-blue">Show Questions</div>
-            <!-- <div>Toggle Chat</div> -->
-            <!-- <span class="material-symbols-outlined material-symbols-outline">forum</span> -->
-            <mat-icon class="theme-blue" aria-hidden="false" aria-label="Example home icon" fontIcon="forum"></mat-icon>
+        <div class="flex">
+            <div style="flex: 1;">
+                <div (click)="!dialogMode ? showDialog(): ''" class="flex space-between margin-10" style="margin: 10px">
+                    <div class="hash theme-blue">Show Questions</div>
+                    <!-- <div>Toggle Chat</div> -->
+                    <!-- <span class="material-symbols-outlined material-symbols-outline">forum</span> -->
+                    <mat-icon class="theme-blue" aria-hidden="false" aria-label="Example home icon" fontIcon="forum"></mat-icon>
+                </div>
+                <div class="flex space-between margin-5 margin-10">
+                    <div>
+                        <div class="circular {{getClass(item.easeOfUse)}}">
+                            <span>{{item.easeOfUse}}</span>
+                        </div>
+                        <div class="head-text padding">Ease of Use</div>
+                    </div>
+                    <div>
+                        <div class="circular {{getClass(item.satisfaction)}}">
+                            <span>{{item.satisfaction}}</span>
+                        </div>
+                        <div class="head-text padding">Satisfaction</div>
+                    </div>
+                    <div>
+                        <div class="circular {{getClass(item.usefullness)}}">
+                            <span>{{item.usefullness}}</span>
+                        </div>
+                        <div class="head-text padding">Usefullness</div>
+                    </div>
+                    <div>
+                        <div class="circular {{getClass(item.preference)}}">
+                            <span>{{item.preference}}</span>
+                        </div>
+                        <div class="head-text padding">Preference</div>
+                    </div>
+                </div>
+                <div class="margin-5 padding" style="font-weight: bolder;">{{item.title}}</div>
+                <div class="margin-5 padding">
+                    {{item.summary}}
+                </div>
+                <div class="flex align-left margin-5">
+                    <div *ngFor="let i of item.keywords" class="margin-10 hash theme-blue">#{{i}}</div>
+                </div>
+                
+            </div>
+            <div style="flex: 1; max-height: 400px; overflow: scroll; border-left: 2px solid whitesmoke;" *ngIf="dialogMode">
+                <div *ngFor="let i of item.messages; let ind = index" class="chat" [ngStyle]="{'flex-direction': ind % 2 ? 'row-reverse': 'row'}">
+                    <div class="user">
+                        <span>{{i.user[0]}}</span>
+                    </div>
+                    <div class="conversation">
+                        <div class="message">{{i.message}}</div>
+                        <div class="time head-text">{{i.time | date: 'shortTime'}}</div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
         <div class="flex space-between margin-5 padding">
-            <div>
-                <div class="circular {{getClass(item.easeOfUse)}}">
-                    <span>{{item.easeOfUse}}</span>
-                </div>
-                <div class="head-text padding">Ease of Use</div>
+            <div class="flex">
+                <button class="margin-10" *ngIf="dialogMode">
+                    <mat-icon style="color: #d16d6a" fontIcon="bug_report"></mat-icon>
+                </button>
+                <button class="margin-10" style="color: white; background-color: #479eff; border: 1px solid #767676;" *ngIf="dialogMode">
+                    <mat-icon fontIcon="search"></mat-icon>
+                </button>
+                <button>Android Auto</button>
             </div>
-            <div>
-                <div class="circular {{getClass(item.satisfaction)}}">
-                    <span>{{item.satisfaction}}</span>
-                </div>
-                <div class="head-text padding">Satisfaction</div>
-            </div>
-            <div>
-                <div class="circular {{getClass(item.usefullness)}}">
-                    <span>{{item.usefullness}}</span>
-                </div>
-                <div class="head-text padding">Usefullness</div>
-            </div>
-            <div>
-                <div class="circular {{getClass(item.preference)}}">
-                    <span>{{item.preference}}</span>
-                </div>
-                <div class="head-text padding">Preference</div>
-            </div>
-        </div>
-        <div class="margin-5 padding" style="font-weight: bolder;">{{item.title}}</div>
-        <div class="margin-5 padding">
-            {{item.summary}}
-        </div>
-        <div class="flex align-left margin-5 padding">
-            <div *ngFor="let i of item.keywords" class="margin-10 hash theme-blue">#{{i}}</div>
-        </div>
-        <div class="flex space-between margin-5 padding">
-            <button>Android Auto</button>
             <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="more_vert"></mat-icon>
         </div>
+        
     </div>
 </div>

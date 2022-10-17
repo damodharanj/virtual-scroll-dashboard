@@ -26,6 +26,8 @@ export class CardComponent implements OnInit {
 
   @Input() playVideo = false;
 
+  @Input() dialogMode = false;
+
   ngOnInit(): void {}
 
   getClass(value: Rating): string {
