@@ -9,7 +9,7 @@ import videojs from 'video.js';
 export class VideoComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('target', {static: true}) target: ElementRef | null = null;
-  player: {dispose: any} | null = null;
+  player: {dispose: any, pause: any} | null = null;
 
   @Input() videourl = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm'
 
@@ -31,6 +31,12 @@ export class VideoComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   constructor() {}
+
+  pause() {
+    if (this.player) {
+      this.player.pause();
+    }
+  }
 
   ngOnInit() {
     this.options.sources[0].src = this.videourl;

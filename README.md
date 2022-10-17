@@ -42,11 +42,13 @@
 ## Bugs / Limitations
 * Sort is supported for date
 * Filter is supported for usernames
+* Stop multiple video tags from playing simulataneously 
 * Virtual scroll does not trigger for certain smaller breakpoints
 * Sorting requires new Array instance - library limitation, but the memory is replaced and not accumulated
 * Body scroll to be handled in virtual scroll - needs details DOM surgery in complaince with the virtual scroll library
 * Icons are taken from material instead of original
 * Certain UI / UX yet to be polished pixel perfect (dimensions & colors)
+
 
 -----
 
