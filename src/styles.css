@@ -3,6 +3,8 @@
 * {
     font-family: 'Inter';
     font-size: 12px;
+    box-sizing: border-box;
+    user-select: none;
 }
 
 .flex {
@@ -52,7 +54,10 @@
     font-weight: bold;
     text-transform: uppercase;
 }
-html, body { height: 100%; }
+html, body { 
+    /* height: 100%;  */
+    margin: 0px;
+}
 
 .head-text {
     color: #858585;
@@ -64,4 +69,14 @@ html, body { height: 100%; }
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
+}
+
+
+.custom-dialog-container .mat-dialog-container {
+    padding: 0px;
+    margin: 0px;
+}
+
+.custom-dialog-container app-card {
+    margin: 0px;
 }

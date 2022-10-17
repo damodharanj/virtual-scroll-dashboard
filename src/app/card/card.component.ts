@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import type {PanelItem, Rating} from '../apiservice.service';
-import { generatePanelItem } from '../apiservice.service';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogCardComponent } from '../dialog-card/dialog-card.component';
 
 const ratingToClass = {
   1: 'one',
@@ -17,14 +18,25 @@ const ratingToClass = {
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   @Input() item: PanelItem = {} as any;
+
+  @Input() playVideo = false;
 
   ngOnInit(): void {}
 
   getClass(value: Rating): string {
     return ratingToClass[value];
+  }
+
+  showDialog() {
+    this.dialog.open(DialogCardComponent, {
+      data: {item: this.item, playVideo: this.playVideo},
+      panelClass: 'custom-dialog-container',
+    });
   }
 
 }

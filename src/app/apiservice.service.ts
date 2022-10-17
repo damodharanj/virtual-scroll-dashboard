@@ -4,6 +4,7 @@ import { faker } from '@faker-js/faker';
 export type Rating = 1 | 2 | 3 | 4 | 5
 
 export interface PanelItem {
+  id: string
   name: string
   gender: string
   session: string
@@ -27,6 +28,7 @@ function getRating(): Rating {
 
 export function generatePanelItem(): PanelItem {
   return {
+    id: faker.datatype.uuid(),
     name: faker.name.fullName(),
     gender: faker.name.gender(),
     age: faker.datatype.number({
@@ -51,18 +53,26 @@ export function generatePanelItem(): PanelItem {
 export class APIService {
 
   itemsCount = 1000;
+  items: Array<PanelItem> = [];
 
   constructor() { }
 
-  getPanelItems(): Promise<Array<PanelItem>> {
-    const items: Array<PanelItem> = [];
-    for (let i=0; i<this.itemsCount; i++) {
-      items.push(generatePanelItem())
+  getPanelItems(reFetch = false): Promise<Array<PanelItem>> {
+    if (reFetch || this.items.length == 0) {
+      for (let i=0; i<this.itemsCount; i++) {
+        this.items.push(generatePanelItem())
+      }
     }
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(items);
+        resolve(this.items);
       }, 1000)
+    })
+  }
+
+  filter(value: string): Promise<Array<PanelItem>> {
+    return new Promise((resolve) => {
+      resolve(this.items.filter(x => x.name.includes(value)));
     })
   }
 }

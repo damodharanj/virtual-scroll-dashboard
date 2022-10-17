@@ -3,10 +3,21 @@
     position: sticky;
     top: 0px;
     background-color: white;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
-.example-viewport {
-    height: calc(100vh - 50px);
-    width: 100%;
-    border: 1px solid black;
-  }
+
+.wrapper {
+    height: calc(100vh - 220px);
+    margin: 30px;
+    overflow-y: scroll;
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.wrapper-form {
+    transform: translate(0px, -20px);
+    margin-right: 10px;
+}

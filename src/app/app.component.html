@@ -1,38 +1,54 @@
 <div style="max-width: 1240px; margin: auto" class="">
   <div class="header">
-    <div class="margin-10">Mostly tap</div>
-    <h1 style="font-size: 30px;">Check your voice mail</h1>
+    <div class="head-text" style="margin-top: 10px; font-size: 15px">Mostly Tap</div>
+    <h1 style="font-size: 30px; font-weight: bold; margin-top: 20px; margin-bottom: 20px">
+      Check your voicemail
+      <mat-icon fontIcon="expand_more"></mat-icon>
+    </h1>
     <div class="flex space-between">
       <div class="flex">
-        <div class="flex margin-10">
-          <span class="hash margin-5">Sort By</span>
-          <span class="hash theme-blue">Date</span>
+        <div class="flex" style="margin-right: 30px">
+          <span style="margin-right: 10px;" class="head-text hash">Sort By</span>
+          <div (click)="sort()" class="flex hash theme-blue">
+            <span>Date ({{items.length}})</span>
+            <mat-icon style="font-size: 15px;" [fontIcon]="sortOrder ? 'expand_more' : 'expand_less'"></mat-icon>
+          </div>
         </div>
         <div class="flex">
-          <span class="hash margin-5">Users</span>
-          <span class="hash theme-blue">All</span>
+          <span class="hash margin-5 head-text" style="margin-right: 10px;">Users</span>
+          <div class="flex hash theme-blue">
+            <span>All (7)</span>
+            <mat-icon style="font-size: 15px;" fontIcon="expand_more"></mat-icon>
+          </div>
         </div>
       </div>
       <div>
         <div class="flex">
-          <span>More filters</span>
-          <select name="" id="">
-            <option value="">Ascending</option>
-            <option value="">Descending</option>
-          </select>
+          <!-- <mat-form-field appearance="fill">
+            <mat-label>Search</mat-label>
+            <input matInput type="text">
+            <button mat-icon-button matPrefix [attr.aria-label]="'Hide password'" >
+              <mat-icon>search</mat-icon>
+            </button>
+          </mat-form-field> -->
+          <form (submit)="filter($event)" class="wrapper-form">
+            <mat-form-field class="example-full-width">
+              <!-- <mat-label>Search</mat-label> -->
+              <!-- <span matPrefix>+1 &nbsp;</span> -->
+              <input name="filter" [value]="filterValue" type="text" matInput placeholder="">
+              <mat-icon matPrefix>search</mat-icon>
+            </mat-form-field>
+          </form>
+          <mat-icon class="head-text" style="font-size: 15px;">tune</mat-icon>
+          <span style="margin-right: 10px;" class="head-text hash">More filters</span>
+          <span class="theme-blue hash">(4)</span>
         </div>
       </div>
     </div>
   </div>
   <div class="flex wrap">
-    <!-- <cdk-virtual-scroll-viewport itemSize="5" class="example-viewport">
-      <app-card *cdkVirtualFor="let i of items; let ind = index" [name]="ind"></app-card>
-    </cdk-virtual-scroll-viewport> -->
-    <li-virtual-scroll style="height: calc(100vh - 200px); width: 100vw; margin: 30px" [gridList]="true"  [items]="items" [asyncRendering]="true" [viewCache]="25">
-      <app-card style="display: inline-flex;" *liVirtualItem="let item" [item]="item"></app-card>
-      <!-- <div *liVirtualItem="let item">
-          {{ item }}
-      </div> -->
+    <li-virtual-scroll class="wrapper" [trackBy]="trackById" [gridList]="true"  [items]="items" [asyncRendering]="true" [viewCache]="25">
+      <app-card  style="display: inline-flex;" *liVirtualItem="let item" [item]="item"></app-card>
     </li-virtual-scroll>
     
   </div>

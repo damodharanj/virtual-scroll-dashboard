@@ -3,16 +3,22 @@
 }
 
 .root {
-    max-width: 560px;
+    width: 560px;
 }
 
 .circular {
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background-color: #d16d6a;
     text-align: center;
     margin: auto;
+    font-size: 9px;
+    padding-top: 3px;
+}
+
+.circular span {
+    font-size: 9px;
 }
 
 
@@ -28,7 +34,8 @@
 }
 
 .one {
-    background-color: #d16d6a
+    background-color: #d16d6a;
+    color: white;
 }
 
 .two {
@@ -52,3 +59,32 @@
     border: 2px solid #f3f3f8;
 }
 
+
+@media (max-width: 1243px)  {
+    :host {
+        justify-content: center;
+        margin: auto;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .root {
+        width: 560px;
+    }
+}
+
+
+.play-button {
+    font-size: 60px;
+    position: absolute;
+    left: calc(50% - 30px);
+    top: calc(50% - 30px);
+    color: white;
+    width: 100px;
+    height: 100px;
+}
+
+.overlay {
+    position: relative;
+    cursor: pointer;
+}
